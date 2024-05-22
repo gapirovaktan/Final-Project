@@ -1,5 +1,6 @@
 Product Management System Documentation 
 
+
 This repository contains a simple command-line product management system implemented in C++. It provides basic functionalities to add, update, delete, and view products in an inventory. Below is an overview of the system and its functionalities:
 
 Features:
