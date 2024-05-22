@@ -1,36 +1,31 @@
-#Product Management System Documentation 
-
-
+1. Product Management System Documentation
 This repository contains a simple command-line product management system implemented in C++. It provides basic functionalities to add, update, delete, and view products in an inventory. Below is an overview of the system and its functionalities:
 
-Features:
+FEATURES:
+
 Add Product:
-
 Allows users to add a new product to the inventory by providing details such as name, description, price, and stock quantity.
+
 Update Product:
-
 Enables users to update the details of an existing product, including its description, price, and stock quantity.
+
 Delete Product:
-
 Allows users to remove a product from the inventory by entering its name.
+
 View Products:
-
 Displays all products currently available in the inventory.
-Menu Navigation:
 
+Menu Navigation:
 Users can navigate through the system using a simple menu interface, which presents options to perform various operations.
+
 Usage:
 Clone the Repository:
-
 Clone this repository to your local machine using the git clone command.
 Compile the Code:
-
 Navigate to the directory where the code is cloned and compile the code using a C++ compiler.
 Run the Executable:
-
 Execute the compiled binary to start the product management system.
 Follow the Menu:
-
 Upon running the program, users will be presented with a menu displaying available options.
 Choose an option by entering the corresponding number and follow the prompts to perform the desired operation.
 Dependencies:
@@ -44,11 +39,11 @@ Contributions to this project are welcome. Fork the repository, make your change
 Contact:
 For any queries or issues related to this project, please contact the author author_name.
 
- Exitlanation:
+Exitlanation:
 Exp1. Add Product
 2. Update Product
-3. Delete Product
-4. View Products
+4. Delete Product
+5. View Products
 --------------------------------------
 2> Updating product:
 Enter your choice: 1
