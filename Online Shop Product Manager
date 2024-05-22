@@ -16,15 +16,10 @@ void addProduct(vector<Product>& products);
 void updateProduct(vector<Product>& products);
 void deleteProduct(vector<Product>& products);
 void viewProducts(const vector<Product>& products);
-void saveProductsToFile(const vector<Product>& products, const string& filename);
-void loadProductsFromFile(vector<Product>& products, const string& filename);
 void showMenu();
 
 int main() {
     vector<Product> products;
-    string filename = "products.txt";
-
-    loadProductsFromFile(products, filename);
 
     while (true) {
         showMenu();
@@ -45,7 +40,6 @@ int main() {
                 viewProducts(products);
                 break;
             case 5:
-                saveProductsToFile(products, filename);
                 return 0;
             default:
                 cout << "Invalid choice, please try again." << endl;
@@ -136,46 +130,6 @@ void viewProducts(const vector<Product>& products) {
         cout << "Price: " << product.price << endl;
         cout << "Stock: " << product.stock << endl;
     }
-}
-
-void saveProductsToFile(const vector<Product>& products, const string& filename) {
-    ofstream outFile(filename);
-
-    if (!outFile) {
-        cout << "Error opening file for writing." << endl;
-        return;
-    }
-
-    for (const auto& product : products) {
-        outFile << product.name << endl;
-        outFile << product.description << endl;
-        outFile << product.price << endl;
-        outFile << product.stock << endl;
-    }
-
-    outFile.close();
-    cout << "Products saved to file." << endl;
-}
-
-void loadProductsFromFile(vector<Product>& products, const string& filename) {
-    ifstream inFile(filename);
-
-    if (!inFile) {
-        cout << "Error opening file for reading. Starting with an empty inventory." << endl;
-        return;
-    }
-
-    string name, description;
-    double price;
-    int stock;
-
-    while (getline(inFile, name) && getline(inFile, description) && inFile >> price && inFile >> stock) {
-        inFile.ignore(); 
-        products.push_back(Product(name, description, price, stock));
-    }
-
-    inFile.close();
-    cout << "Products loaded from file." << endl;
 }
 
 void showMenu() {
