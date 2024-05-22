@@ -43,34 +43,22 @@ Contributions to this project are welcome. Fork the repository, make your change
 Contact:
 For any queries or issues related to this project, please contact the author author_name.
 
-
-Example Usage: Entering Product Name
-Navigation:
-
-The customer visits the product management system website and is presented with the homepage.
-View Products:
-
-The customer clicks on the "View Products" button or navigates to the product listings page.
-Browsing Products:
-
-The customer scrolls through the list of available products and finds a product they are interested in.
-Selecting a Product:
-
-Interested in a particular product, the customer clicks on its title or image to view more details.
-Product Details Page:
-
-On the product details page, the customer sees fields to input information such as name, description, price, and stock.
-Entering Product Name:
-
-The customer focuses on the "Product Name" input field.
-They click or tap on the field, activating it for text input.
-Using their keyboard or touchscreen, the customer enters the name of the product they are searching for. For example, "Premium Wireless Headphones."
-Submitting Product Name:
-
-After entering the product name, the customer clicks the "Search" button or presses the "Enter" key to submit the query.
-Search Results:
-
-The system processes the entered product name and returns relevant search results, displaying matching products that match the entered name.
-Selecting a Product from Results:
-
-The customer reviews the search results and clicks on the desired product to view its details further.
+ Exitlanation:
+Exp1. Add Product
+2. Update Product
+3. Delete Product
+4. View Products
+--------------------------------------
+2> Updating product:
+Enter your choice: 1
+Enter product name: Aktan
+Enter product description: Costums
+Enter product price: 100$
+Enter product stock: Product added successfully.
+---------------------------------------------------
+3.Enter your choice: 2
+Enter the name of the product to update: watch
+Enter new description: casio
+Enter new price: 300
+Enter new stock: 13
+Product updated successfully.
