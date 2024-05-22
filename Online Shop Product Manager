@@ -1,55 +1,20 @@
 #include <bits/stdc++.h>
-using namespace std;
-
-class Product {
-public:
-    string name;
-    string description;
-    double price;
-    int stock;
-
-    Product(string n, string d, double p, int s)
-        : name(n), description(d), price(p), stock(s) {}
-};
-
-void addProduct(vector<Product>& products);
-void updateProduct(vector<Product>& products);
-void deleteProduct(vector<Product>& products);
-void viewProducts(const vector<Product>& products);
-void showMenu();
-
-int main() {
-    vector<Product> products;
-
-    while (true) {
-        showMenu();
-        int choice;
-        cin >> choice;
-
-        switch (choice) {
-            case 1:
-                addProduct(products);
-                break;
-            case 2:
-                updateProduct(products);
-                break;
-            case 3:
-                deleteProduct(products);
-                break;
-            case 4:
-                viewProducts(products);
-                break;
-            case 5:
-                return 0;
-            default:
-                cout << "Invalid choice, please try again." << endl;
-        }
+using namespace std ;
+  class Product {
+       public:
+      string name ;
+      string description ;
+      double price ;
+      int stock;
+         
+    Product (string n,string des,double p,int s) {
+      name =n;
+      description=des;
+      price=p;
+      stock=s;
     }
-
-    return 0;
-}
-
-void addProduct(vector<Product>& products) {
+  } ;
+  void addProduct(vector<Product>& products) {
     string name, description;
     double price;
     int stock;
@@ -63,73 +28,93 @@ void addProduct(vector<Product>& products) {
     cin >> price;
     cout << "Enter product stock: ";
     cin >> stock;
-
-    if (name.empty() || price < 0 || stock < 0) {
-        cout << "Invalid input. Please try again." << endl;
-        return;
-    }
+    cin.ignore();
 
     products.push_back(Product(name, description, price, stock));
     cout << "Product added successfully." << endl;
 }
-
 void updateProduct(vector<Product>& products) {
     string name;
     cout << "Enter the name of the product to update: ";
     cin.ignore();
     getline(cin, name);
 
-    for (auto& product : products) {
-        if (product.name == name) {
+    for (int i = 0; i < products.size(); ++i) {
+        if (products[i].name == name) {
             cout << "Enter new description: ";
-            getline(cin, product.description);
+            getline(cin, products[i].description);
             cout << "Enter new price: ";
-            cin >> product.price;
+            cin >> products[i].price;
             cout << "Enter new stock: ";
-            cin >> product.stock;
-
-            if (product.price < 0 || product.stock < 0) {
-                cout << "Invalid input. Please try again." << endl;
-                return;
-            }
+            cin >> products[i].stock;
+            cin.ignore();
 
             cout << "Product updated successfully." << endl;
             return;
         }
+        
     }
 
     cout << "Product not found." << endl;
 }
-
 void deleteProduct(vector<Product>& products) {
     string name;
     cout << "Enter the name of the product to delete: ";
     cin.ignore();
     getline(cin, name);
 
-    for (auto it = products.begin(); it != products.end(); ++it) {
-        if (it->name == name) {
-            products.erase(it);
+    for (int i = 0; i < products.size(); ++i) {
+        if (products[i].name == name) {
+            products.erase(products.begin() + i);
             cout << "Product deleted successfully." << endl;
             return;
         }
     }
-
-    cout << "Product not found." << endl;
+      cout << "Product not found." << endl;
 }
-
 void viewProducts(const vector<Product>& products) {
     if (products.empty()) {
         cout << "No products available." << endl;
         return;
     }
 
-    for (const auto& product : products) {
-        cout << "Name: " << product.name << endl;
-        cout << "Description: " << product.description << endl;
-        cout << "Price: " << product.price << endl;
-        cout << "Stock: " << product.stock << endl;
+    for (int i = 0; i < products.size(); ++i) {
+        cout << "Name: " << products[i].name << endl;
+        cout << "Description: " << products[i].description << endl;
+        cout << "Price: " << products[i].price << endl;
+        cout << "Stock: " << products[i].stock << endl;
     }
+}
+
+void saveProductsToFile(const vector<Product>& products, const string& filename) {
+    ofstream outFile(filename);
+
+    for (int i = 0; i < products.size(); ++i) {
+        outFile << products[i].name << endl;
+        outFile << products[i].description << endl;
+        outFile << products[i].price << endl;
+        outFile << products[i].stock << endl;
+    }
+
+    cout << "Products saved to file." << endl;
+}
+
+void loadProductsFromFile(vector<Product>& products, const string& filename) {
+    ifstream inFile(filename);
+
+    string name, description;
+    double price;
+    int stock;
+
+    while (getline(inFile, name)) {
+        getline(inFile, description);
+        inFile >> price;
+        inFile >> stock;
+        inFile.ignore();
+        products.push_back(Product(name, description, price, stock));
+    }
+
+    cout << "Products loaded from file." << endl;
 }
 
 void showMenu() {
@@ -139,4 +124,38 @@ void showMenu() {
     cout << "4. View Products" << endl;
     cout << "5. Exit" << endl;
     cout << "Enter your choice: ";
+}
+
+int main() {
+    vector<Product> products;
+    string filename = "products.txt";
+    loadProductsFromFile(products, filename);
+
+    while (true) {
+        showMenu();
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            addProduct(products);
+            break;
+        case 2:
+            updateProduct(products);
+            break;
+        case 3:
+            deleteProduct(products);
+            break;
+        case 4:
+            viewProducts(products);
+            break;
+        case 5:
+            saveProductsToFile(products, filename);
+            return 0;
+        default:
+            cout << "Invalid choice, please try again." << endl;
+        }
+    }
+
+    return 0;
 }
